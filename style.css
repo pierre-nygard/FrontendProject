@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #777;
+  color: ghostwhite;
+}
+
+.slider {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.slider__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.slider__image--active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.slider__image[data-image="1"] {
+  background: rgba(0, 0, 255, 0.5);
+}
+
+.slider__image[data-image="2"] {
+  color: blue;
+}
+/*# sourceMappingURL=style.css.map */

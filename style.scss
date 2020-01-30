@@ -9,11 +9,28 @@ body {
 }
 
 .slider {
-  
+    height: 100vh;
+    width: 100vw;
+    position: relative;
 
-  &__image {
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform: translateX(-100%);
 
+        &--active {
+            transform: translateX(0%);
+        }
 
-    &
-  }
+        &[data-image="1"] {
+            background: rgba(blue, 0.5);
+        }
+
+        &[data-image="2"] {
+            color: blue;
+        }
+    }
 }
