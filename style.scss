@@ -1,0 +1,17 @@
+$back: #777;
+$front: ghostwhite;
+
+
+* { padding: 0; margin: 0;}
+body {
+  background: $back;
+  color: $front;
+}
+
+.slider {
+  
+
+  &__image {
+    
+  }
+}
