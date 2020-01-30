@@ -20,17 +20,18 @@ body {
         height: 100%;
         width: 100%;
         transform: translateX(-100%);
+        background-size: cover;
 
         &--active {
             transform: translateX(0%);
         }
 
         &[data-image="1"] {
-            background: rgba(blue, 0.5);
+            background-image: url(/photos/1.jpg);
         }
 
         &[data-image="2"] {
-            color: blue;
+            background-image: url(/photos/2.jpg);
         }
     }
 }

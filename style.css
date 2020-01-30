@@ -22,6 +22,7 @@ body {
   width: 100%;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+  background-size: cover;
 }
 
 .slider__image--active {
@@ -30,10 +31,10 @@ body {
 }
 
 .slider__image[data-image="1"] {
-  background: rgba(0, 0, 255, 0.5);
+  background-image: url(/photos/1.jpg);
 }
 
 .slider__image[data-image="2"] {
-  color: blue;
+  background-image: url(/photos/2.jpg);
 }
 /*# sourceMappingURL=style.css.map */
