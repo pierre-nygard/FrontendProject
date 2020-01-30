@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -6,6 +7,7 @@
 body {
   background: #777;
   color: ghostwhite;
+  font-family: "Work Sans", sans-serif;
 }
 
 .slider {
@@ -22,6 +24,24 @@ body {
   width: 100%;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+  background-size: cover;
+}
+
+.slider__image .go-to-next, .slider__image .go-back {
+  position: absolute;
+  top: 30px;
+  font-weight: 700;
+  font-size: 2em;
+  text-shadow: 0 0 20px black;
+  cursor: pointer;
+}
+
+.slider__image .go-to-next {
+  right: 30px;
+}
+
+.slider__image .go-back {
+  left: 30px;
 }
 
 .slider__image--active {
@@ -30,10 +50,10 @@ body {
 }
 
 .slider__image[data-image="1"] {
-  background: rgba(0, 0, 255, 0.5);
+  background-image: url(/photos/1.jpg);
 }
 
 .slider__image[data-image="2"] {
-  color: blue;
+  background-image: url(/photos/2.jpg);
 }
 /*# sourceMappingURL=style.css.map */

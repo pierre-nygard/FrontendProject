@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap');
+
 $back: #777;
 $front: ghostwhite;
+$sans: 'Work Sans', sans-serif;
 
 
 * { padding: 0; margin: 0;}
 body {
   background: $back;
   color: $front;
+  font-family: $sans;
 }
 
 .slider {
@@ -20,17 +24,36 @@ body {
         height: 100%;
         width: 100%;
         transform: translateX(-100%);
+        background-size: cover;
+
+        .go-to-next, .go-back {
+            position: absolute;
+            top: 30px;
+
+            font-weight: 700;
+            font-size: 2em;
+            text-shadow: 0 0 20px rgba(black, 1);
+            cursor: pointer;
+        }
+
+        .go-to-next {
+            right: 30px;
+        }
+
+        .go-back {
+            left: 30px;
+        }
 
         &--active {
             transform: translateX(0%);
         }
 
         &[data-image="1"] {
-            background: rgba(blue, 0.5);
+            background-image: url(/photos/1.jpg);
         }
 
         &[data-image="2"] {
-            color: blue;
+            background-image: url(/photos/2.jpg);
         }
     }
 }
