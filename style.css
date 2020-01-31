@@ -48,12 +48,4 @@ body {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
 }
-
-.slider__image[data-image="1"] {
-  background-image: url(/photos/1.jpg);
-}
-
-.slider__image[data-image="2"] {
-  background-image: url(/photos/2.jpg);
-}
 /*# sourceMappingURL=style.css.map */
