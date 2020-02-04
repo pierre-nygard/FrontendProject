@@ -42,13 +42,9 @@ function loadSettings() {
                 slider__slide.classList.add('slider__slide--active');
                 span.classList.add('circle--active');
             }
-            let back = (i - 1 < 0) ? json.image_count-1: i-1;
-            let next = (i + 1 == json.image_count) ? 0 : i+1;
 
             slider__slide.innerHTML = `
             <div class="slider__front">
-                <a class="go-back" onclick="goToImage(${back})"><div class="shadow__back"></div></a>
-                <a class="go-to-next" onclick="goToImage(${next})"><div class="shadow__next"></div></a>
                 <div class="information">
                     <div class="information__heading">
                         <div class="title"><h1>${json[i].image_title}</h1></div>
