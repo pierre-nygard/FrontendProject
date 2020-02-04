@@ -1,26 +1,22 @@
 const slider = document.getElementById("slider");
+const buttons = document.getElementById('buttons__list');
 var activeImageIndex;
 
 function runApp() {
     loadSettings();
 }
 
-function goToImage(direction) {
+function goToImage(idx) {
+    toggleSlide(activeImageIndex);
+    toggleSlide(idx);
+    activeImageIndex = idx;
+}
 
-    let images = document.getElementsByClassName('slider__image');
-
-    images[activeImageIndex].classList.toggle('slider__image--active');
-
-    activeImageIndex += direction;
-
-    activeImageIndex = activeImageIndex < 0 ? images.length - 1 : activeImageIndex;
-    activeImageIndex = activeImageIndex > images.length - 1 ? 0 : activeImageIndex;
-    
-    //alert(activeImageIndex);
-
-
-
-    images[activeImageIndex].classList.toggle('slider__image--active');
+function toggleSlide(location) {
+    let sliders = document.getElementsByClassName('slider__slide');
+    let circles = document.getElementsByClassName('circle');
+    sliders[location].classList.toggle('slider__slide--active');
+    circles[location].classList.toggle('circle--active');
 }
 
 function loadSettings() {
@@ -29,36 +25,43 @@ function loadSettings() {
     fetch(settingsurl).
     then(response => response.json()).
     then(json =>  {
-        for(var i = 0; i < json.image_count; i++) {
-            let j = i;
-            let backLink = document.createElement('a');
-            backLink.classList.add('go-back');
-            backLink.innerHTML = 'Go back';
-            backLink.addEventListener("click", () => {
-                goToImage(-1)
-            });
-                
-            let nextLink = document.createElement('a');
-            nextLink.classList.add('go-to-next');
-            nextLink.innerHTML = 'Go to next';
-            nextLink.addEventListener("click", () => {
-                goToImage(1)
-            });
-                
-            let image = document.createElement("div");
-            image.classList.add('slider__image');
-            image.dataset.image = i;
-            image.style.backgroundImage = `url(${json[i].url})`;
-            image.appendChild(backLink);
-            image.appendChild(nextLink);
+        activeImageIndex = json.starting_image;
+        
+        for(let i = 0; i < json.image_count; i++) {
+            let slider__slide = document.createElement('div');
+            let listItem = document.createElement('li');
+            let span = document.createElement('span');
+            
+            span.classList.add('circle');
+            listItem.addEventListener('click', () => goToImage(i));
 
-            if(image.dataset.image == json.starting_image) 
-            {
-                image.classList.add('slider__image--active');
-                activeImageIndex = json.starting_image;
+            slider__slide.classList.add('slider__slide');
+            slider__slide.dataset.image = i;
+
+            if(i == json.starting_image){
+                slider__slide.classList.add('slider__slide--active');
+                span.classList.add('circle--active');
             }
+            let back = (i - 1 < 0) ? json.image_count-1: i-1;
+            let next = (i + 1 == json.image_count) ? 0 : i+1;
 
-            slider.appendChild(image);
+            slider__slide.innerHTML = `
+            <div class="slider__front">
+                <a class="go-back" onclick="goToImage(${back})"><div class="shadow__back"></div></a>
+                <a class="go-to-next" onclick="goToImage(${next})"><div class="shadow__next"></div></a>
+                <div class="information">
+                    <div class="information__heading">
+                        <div class="title"><h1>${json[i].image_title}</h1></div>
+                        <div class="information__description">${json[i].image_description}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider__image" style="background-image: url(${json[i].image_url})"></div>
+            `;
+
+            buttons.appendChild(listItem);
+            listItem.appendChild(span);
+            slider.appendChild(slider__slide);
         }
     });
 }
