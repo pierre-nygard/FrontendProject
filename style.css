@@ -14,6 +14,36 @@ body {
   height: 100vh;
   width: 100vw;
   position: relative;
+  overflow: hidden;
+}
+
+.slider__slide {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.slider__slide--active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.slider__front {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .slider__image {
@@ -22,174 +52,175 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
   background-size: cover;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 200ms ease-in;
+  transition: -webkit-transform 200ms ease-in;
+  transition: transform 200ms ease-in;
+  transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
 }
 
-.slider__image .go-to-next, .slider__image .go-back {
-  position: absolute;
-  top: 0px;
-  font-weight: 700;
-  font-size: 2em;
-  text-shadow: 0 0 20px black;
-  cursor: pointer;
-  z-index: 3;
-  width:10%;
-  height:100%;
+.slider__image--zoom {
+  -webkit-transform: scale(1.8);
+          transform: scale(1.8);
 }
 
-.slider__image .go-to-next {
-  right: 0px;
+.information {
+  position: relative;
+  opacity: 0.8;
+  z-index: 10;
 }
 
-.slider__image .go-back {
-  left: 0px;
+.information__heading .title h1 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 25px;
 }
 
- .shadow-inside{
-  height:100%;
-  width:1px;
- position: absolute;
- transition: ease-in-out .3s;
-  visibility: hidden;
-}
-
-.shadow-inside-next{
-  height:100%;
-  right: 0;
-  width:1px;
- position: absolute;
- transition: ease-in-out .3s;
-}
-
-
-.go-to-next:hover .shadow-inside-next{
-  box-shadow: 20px -10px 50px 50px rgba(0, 0, 0, 0.247); 
-visibility: visible;
-}
-
- .go-back:hover .shadow-inside{
-  box-shadow: 20px -10px 50px 30px rgba(0, 0, 0, 0.247); 
-  visibility: visible;
-}
-
-.slider__image--active {
-  -webkit-transform: translateX(0%);
-          transform: translateX(0%);
-}
-
-.slider__image[data-image="1"] {
-  background-image: url(/photos/1.jpg);
-}
-
-.slider__image[data-image="2"] {
-  background-image: url(/photos/2.jpg);
-}
-
-#information{
-  width: 100%;
-  top: 40%;
-  position: absolute;
-  opacity: 0.8; 
-}
-
- .description{
- margin-left:10px;
-  width:250px;  
+.information__description {
+  margin-left: 10px;
+  width: 250px;
   padding: 20px;
   background-color: #FFF;
   margin: 0 auto;
   margin-top: 35px;
-  
+  font-size: 14px;
+  font-weight: normal;
+  text-align: justify;
+  color: #000;
 }
 
-.description:before{
-  content: " ";
+.information__description:before {
+  content: "";
   position: absolute;
   margin-left: 110px;
   margin-top: -35px;
   border-top: none;
   border-right: 15px solid transparent;
   border-left: 15px solid transparent;
-  border-bottom: 15px solid #FFF; 
+  border-bottom: 15px solid #FFF;
 }
 
-.description h3{
-font-size: 14px;
-font-weight: normal;
-text-align: justify;
-color: #000;
-}
-
- .title h1{ 
-  text-align: center;
-  margin: 0 auto;
-  font-size: 25px; 
-}
-
-
-
-
-.footer{
+.footer {
   position: absolute;
-  width:100%;
-  bottom: 0; 
- 
+  width: 100%;
+  bottom: 0;
   margin: 0 auto;
-  
-  z-index: 2;
+  z-index: 10;
 }
 
-
-.footer .buttons{
-  margin:0 auto;
-  margin-bottom:30px;
+.footer .buttons {
+  margin: 0 auto;
+  margin-bottom: 30px;
   width: 100px;
-
 }
 
-.buttons ul{
-  list-style-type: none;    
+.footer .buttons ul {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  
 }
 
-
-.buttons .circle{
-  margin-left:5px;
-  position:relative;
-  height:12px;
-  width:12px;
-  border: 3px solid #FFF;    
+.footer .buttons .circle {
+  margin-left: 5px;
+  position: relative;
+  height: 12px;
+  width: 12px;
+  border: 3px solid #FFF;
   display: inline-block;
   border-radius: 50%;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
 }
 
-.buttons .circle:before{
-    visibility: hidden;
-    content: "";
-    position:absolute;
-    left: 50%;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #FFF;
-    transition: transform 0.3s;
-    transform: translate(-50%, -50%) scale(0);          
-    }
+.footer .buttons .circle:before {
+  visibility: hidden;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FFF;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+}
 
-    .buttons .circle:hover{
-      cursor: pointer;
-    }
-    
-    .buttons .circle:hover:before{
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-    }
+.footer .buttons .circle:hover, .footer .buttons .circle--active {
+  cursor: pointer;
+}
 
+.footer .buttons .circle:hover:before, .footer .buttons .circle--active:before {
+  visibility: visible;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
 
+.menu {
+  color: #000;
+  position: absolute;
+  width: 400px;
+  height: 350px;
+  top: 30%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  left: -400px;
+  background: #FFF;
+  opacity: 0.9;
+  padding: 40px;
+  z-index: 2;
+  -webkit-box-shadow: 2px 3px 40px -11px #1f1f1f;
+  box-shadow: 2px 3px 40px -11px #1f1f1f;
+}
 
+.menu:after, .menu:before {
+  content: " ";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  border: 0px solid #fff;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.menu:after {
+  top: 0px;
+  left: 0px;
+  border-top: 5px solid black;
+}
+
+.menu:before {
+  bottom: 0px;
+  right: 0px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+
+.menu:hover {
+  left: 0;
+}
+
+.menu:hover:before, .menu:hover:after {
+  width: 100%;
+  height: 98%;
+}
+
+.menu p {
+  text-align: justify;
+  font-family: 'Dosis', sans-serif;
+  font-size: 15px;
+}
+
+.menu h1 {
+  font-size: 22px;
+  font-family: 'Linden Hill', serif;
+}
 /*# sourceMappingURL=style.css.map */
