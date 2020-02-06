@@ -50,11 +50,23 @@ body {
         width: 100%;
         background-size: cover;
         z-index: 1;
+        transition: transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185);
+        transition: all 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+        &--zoom {
+            transform: scale(1.5);
+            transition: transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+
+            @keyframes blur {
+                0% {filter: blur(4px);}
+                100% {filter: blur(0px);}
+            }            
+            animation-name: blur;
+            animation-duration: 1s;
+        }
     }
 }
 
 .information {
-    // Ska pushas till mitten från display flex
     position: relative;
     opacity: 0.8; 
     z-index: 10;

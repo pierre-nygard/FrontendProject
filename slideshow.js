@@ -1,14 +1,22 @@
 const slider = document.getElementById("slider");
 const buttons = document.getElementById('buttons__list');
 var activeImageIndex;
+var walkActive = false;
+var isZoomed    = false;
+var zoomLocked  = false;
 
 function runApp() {
     loadSettings();
 }
 
 function goToImage(idx) {
+    if(isZoomed) return false;
+    walkActive = true;
+
     toggleSlide(activeImageIndex);
     toggleSlide(idx);
+
+    setTimeout(() => {walkActive = false}, 200);
     activeImageIndex = idx;
 }
 
@@ -36,7 +44,7 @@ function loadSettings() {
             listItem.addEventListener('click', () => goToImage(i));
 
             slider__slide.classList.add('slider__slide');
-            slider__slide.dataset.image = i;
+            slider__slide.dataset.slide = i;
 
             if(i == json.starting_image){
                 slider__slide.classList.add('slider__slide--active');
@@ -52,14 +60,32 @@ function loadSettings() {
                     </div>
                 </div>
             </div>
-            <div class="slider__image" style="background-image: url(${json[i].image_url})"></div>
+            <div class="slider__image" data-image="${i}" style="background-image: url(${json[i].image_url})"></div>
             `;
 
             buttons.appendChild(listItem);
             listItem.appendChild(span);
-            slider.appendChild(slider__slide);
+            $('#slider').append(slider__slide);
         }
     });
 }
 
 document.onload = runApp();
+
+// On click event for zoom
+document.onclick = (e) => {
+    if(walkActive) return false;
+    toggleZoom(e.clientX, e.clientY);
+};
+
+function toggleZoom(x, y) {
+    let obj = $('.slider__image[data-image='+activeImageIndex+']');
+
+    if(!isZoomed) {
+        let origin = x+"px "+y+"px";
+        obj.css("transform-origin", origin);
+    }
+
+    obj.toggleClass('slider__image--zoom');
+    isZoomed = !isZoomed;
+}

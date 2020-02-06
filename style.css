@@ -54,6 +54,47 @@ body {
   width: 100%;
   background-size: cover;
   z-index: 1;
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185);
+  transition: -webkit-transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185);
+  transition: transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185);
+  transition: transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185), -webkit-transform 1s cubic-bezier(0.965, 0.65, 0.1, 0.185);
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: all 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+}
+
+.slider__image--zoom {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985), -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  -webkit-animation-name: blur;
+          animation-name: blur;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes blur {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+
+@keyframes blur {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
 }
 
 .information {
