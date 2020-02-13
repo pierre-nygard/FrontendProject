@@ -1,6 +1,8 @@
 const slider = $("#slider");
+const body = $("body");
 const win = $("#window");
 const buttons = $("#buttons__list");
+
 
 var activeImageIndex;
 var walkActive = false; // 1000ms time frame when image is sliding. State doesn't allow zooming
@@ -10,14 +12,18 @@ function runApp() {
     loadSettings();
 }
 
-function goToImage(idx) {
+function goToImage(idx, bcgColors) {
     if (isZoomed) return false;
     walkActive = true;
+
 
     let circles = document.getElementsByClassName("circle");
     circles[idx].classList.toggle("circle--active");
     circles[activeImageIndex].classList.toggle("circle--active");
     slider.css("left", "-" + idx * 100 + "%");
+    
+    body.css("background", "radial-gradient(#" + bcgColors[0] + ", #" + bcgColors[1] + ")" );
+
 
     setTimeout(() => { walkActive = false}, 1000);
 
@@ -37,13 +43,20 @@ function loadSettings() {
         slider.css("width", json.image_count * 100 + "%");
         $(".credentials").css("color", json.color);
 
+        //for the colors to start with the first images colors
+        let startColors = json[activeImageIndex].colors       
+        body.css("background", "radial-gradient(#" + startColors[0] + ", #" + startColors[1] + ")" );
+
+        
+
         for (let i = 0; i < json.image_count; i++) {
             let slider__slide = document.createElement("div");
             let listItem = document.createElement("li");
             let span = document.createElement("span");
+            let imageColors = json[i].colors;        
 
             span.classList.add("circle");
-            listItem.addEventListener("click", () => goToImage(i));
+            listItem.addEventListener("click", () => goToImage(i, imageColors));
 
             slider__slide.classList.add("slider__slide");
             slider__slide.dataset.slide = i;
