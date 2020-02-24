@@ -6,7 +6,6 @@ $sans: "Work Sans", sans-serif;
 
 $ease-out: cubic-bezier(0.165, 0.65, 0.1, 0.985);
 
-
 $base: 3vh;
 
 * {
@@ -19,12 +18,12 @@ body, html {
 }
 
 body {
-    background: radial-gradient(#777788, #323232);
     color: $front;
     font-family: $sans;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 200ms linear;
 }
 
 .window {
@@ -74,6 +73,7 @@ body {
         height: 100%;
         width: 100%;
         background-size: cover;
+        background-position: center;
         z-index: 1;
         transition: all 1s $ease-out;
         animation-name: blurOut;
@@ -103,45 +103,6 @@ body {
 
             animation-name: blurIn;
             animation-duration: 1s;
-        }
-    }
-}
-
-.information {
-    position: relative;
-    opacity: 0.8;
-    z-index: 10;
-
-    &__heading {
-        .title h1 {
-            text-align: center;
-            margin: 0 auto;
-            font-size: 25px;
-        }
-    }
-
-    &__description {
-        margin-left: 10px;
-        width: 250px;
-        padding: 20px;
-        background-color: #fff;
-        margin: 0 auto;
-        margin-top: 35px;
-
-        font-size: 14px;
-        font-weight: normal;
-        text-align: justify;
-        color: #000;
-
-        &:before {
-            content: "";
-            position: absolute;
-            margin-left: 110px;
-            margin-top: -35px;
-            border-top: none;
-            border-right: 15px solid transparent;
-            border-left: 15px solid transparent;
-            border-bottom: 15px solid #fff;
         }
     }
 }
@@ -199,84 +160,46 @@ body {
     }
 }
 
-//sliding information/content
+// sliding information/content
 
 .content {
-    color: #000;
+    color: whitesmoke;
+    width: 55%;
     position: absolute;
-    width: 400px;
-    min-height: 15px;
-    top: 10%;
-    transition: 0.5s;
-    left: -400px;
-    background: #fff;
-    opacity: 0.9;
-    padding: 40px;
-    z-index: 2;
-    user-select: none;
-    box-shadow: 2px 3px 40px -11px rgba(31, 31, 31, 1);
+    right: 0;
+    bottom: auto;
+    text-align: right;
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 0% 100%);
+    background: rgba(black, 0.2 );
+    height: 100%;   
 
-    &:after, &:before {
-        content: " ";
-        width: 15px;
-        height: 15px;
-        position: absolute;
-        border: 0px solid #fff;
-        transition: all 1s;
-    }
-
-    &:after {
-        top: 0px;
-        left: 0px;
-        border-top: 5px solid black;
-    }
-
-    &:before {
-        bottom: 0px;
-        right: 0px;
-        border-bottom: 5px solid black;
-        border-right: 5px solid black;
-    }
-
-    p {
-        text-align: justify;
-        font-family: "Dosis", sans-serif;
-        font-size: 15px;
-        opacity: 0;
-        transition: .5s;
-        letter-spacing: 1px;
+    div {
+        position: absolute; 
+        right: 5vh;
+        bottom: 10vh;
+        max-width: 60%;
     }
 
     h1 {
-        font-size: 22px;
-        font-family: "Linden Hill", serif;
-        opacity: 0;
-        transition: .5s;
+        font-size: 5vh;
+        margin-bottom: 1vh;
+        text-shadow: 0px 5px 16px rgba(black, 0.2);
     }
-
-    &:hover {
-        left: 0;
-        opacity: 1;
-
-        &:before, &:after {
-            width: 100%;
-            height: calc(100% - 5px);
-        }
-
-        p, h1 {
-            opacity :1;
-        }
+    p {
+        font-size: 1.5vh;
+        line-height: 2vh;
+        text-shadow: 0px 2px 12px rgba(black, 0.2);
     }
 }
 
 .credentials {
-    color: rgba(white, 0.5);
+    color: rgba(white, 1);
     top: $base;
     left: $base;
     font-size: 1.1em;
     position: absolute;
     text-decoration: none;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     text-shadow: 0 0 15px rgba(rgb(214, 192, 224), 1);
 }
