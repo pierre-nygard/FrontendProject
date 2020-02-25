@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap");
+
+$back: #777;
+$front: ghostwhite;
+$sans: "Work Sans", sans-serif;
+
+$ease-out: cubic-bezier(0.165, 0.65, 0.1, 0.985);
+
+$base: 3vh;
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    color: $front;
+    font-family: $sans;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms linear;
+}
+
+.window {
+    width: 80%;
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 50px rgba(black, 0.4);
+
+    z-index: 3;
+}
+
+.slider {
+    height: 100%;
+
+    position: absolute;
+    display: flex;
+    transition: 1s;
+    left: 0;
+
+    &__slide {
+        position: absolute;
+        height: 80vh;
+        width: 80vw;
+        flex: 1;
+
+        &--active {
+            transform: translateX(0%);
+        }
+    }
+
+    &__front {
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        transition: all 1s $ease-out;
+        animation-name: blurOut;
+        animation-duration: 1s;
+
+        @keyframes blurOut {
+            0% {
+                filter: blur(4px);
+            }
+            100% {
+                filter: blur(0px);
+            }
+        }
+
+        &--zoom {
+            transform: scale(1.25);
+            transition: transform 1s $ease-out;
+
+            @keyframes blurIn {
+                0% {
+                    filter: blur(4px);
+                }
+                100% {
+                    filter: blur(0px);
+                }
+            }
+
+            animation-name: blurIn;
+            animation-duration: 1s;
+        }
+    }
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: 10;
+
+    .buttons {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 100px;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .circle {
+            margin-left: 5px;
+            position: relative;
+            height: 12px;
+            width: 12px;
+            border: 3px solid #fff;
+            display: inline-block;
+            border-radius: 50%;
+            transition: transform 0.3s;
+
+            &:before {
+                visibility: hidden;
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: #fff;
+                transition: transform 0.3s;
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            &:hover, &--active {
+                cursor: pointer;
+
+                &:before {
+                    visibility: visible;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+    }
+}
+
+// sliding information/content
+
+.content {
+    color: whitesmoke;
+    width: 55%;
+    position: absolute;
+    right: 0;
+    bottom: auto;
+    text-align: right;
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 0% 100%);
+    background: rgba(black, 0.2 );
+    height: 100%;   
+
+    div {
+        position: absolute; 
+        right: 5vh;
+        bottom: 10vh;
+        max-width: 60%;
+    }
+
+    h1 {
+        font-size: 5vh;
+        margin-bottom: 1vh;
+        text-shadow: 0px 5px 16px rgba(black, 0.2);
+    }
+    p {
+        font-size: 1.5vh;
+        line-height: 2vh;
+        text-shadow: 0px 2px 12px rgba(black, 0.2);
+    }
+}
+
+.credentials {
+    color: rgba(white, 1);
+    top: $base;
+    left: $base;
+    font-size: 1.1em;
+    position: absolute;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(rgb(214, 192, 224), 1);
+}
