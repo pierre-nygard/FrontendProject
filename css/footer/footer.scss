@@ -1,0 +1,52 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: 10;
+
+    .buttons {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 100px;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .circle {
+            margin-left: 5px;
+            position: relative;
+            height: 12px;
+            width: 12px;
+            border: 3px solid #fff;
+            display: inline-block;
+            border-radius: 50%;
+            transition: transform 0.3s;
+
+            &:before {
+                visibility: hidden;
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: #fff;
+                transition: transform 0.3s;
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            &:hover, &--active {
+                cursor: pointer;
+
+                &:before {
+                    visibility: visible;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+    }
+}
