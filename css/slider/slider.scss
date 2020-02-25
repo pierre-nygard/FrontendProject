@@ -1,0 +1,70 @@
+.slider {
+    height: 100%;
+
+    position: absolute;
+    display: flex;
+    transition: 1s;
+    left: 0;
+
+    &__slide {
+        position: absolute;
+        height: 80vh;
+        width: 80vw;
+        flex: 1;
+
+        &--active {
+            transform: translateX(0%);
+        }
+    }
+
+    &__front {
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        transition: all 1s $ease-out;
+        animation-name: blurOut;
+        animation-duration: 1s;
+
+        @keyframes blurOut {
+            0% {
+                filter: blur(4px);
+            }
+            100% {
+                filter: blur(0px);
+            }
+        }
+
+        &--zoom {
+            transform: scale(1.25);
+            transition: transform 1s $ease-out;
+
+            @keyframes blurIn {
+                0% {
+                    filter: blur(4px);
+                }
+                100% {
+                    filter: blur(0px);
+                }
+            }
+
+            animation-name: blurIn;
+            animation-duration: 1s;
+        }
+    }
+}

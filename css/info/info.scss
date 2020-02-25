@@ -1,0 +1,31 @@
+.content {
+    color: whitesmoke;
+    width: 55%;
+    position: absolute;
+    right: 0;
+    bottom: auto;
+    text-align: right;
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 0% 100%);
+    background: rgba(black, 0.2 );
+    height: 100%;   
+
+   
+    div {
+        position: absolute; 
+        right: 5vh;
+        bottom: 10vh;
+        max-width: 60%;
+    
+    }
+
+    h1 {
+        font-size: 5vh;
+        margin-bottom: 1vh;
+        text-shadow: 0px 5px 16px rgba(black, 0.2);
+    }
+    p {
+        font-size: 1.5vh;
+        line-height: 2vh;
+        text-shadow: 0px 2px 12px rgba(black, 0.2);
+    }
+}

@@ -1,0 +1,116 @@
+.slider {
+  height: 100%;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 1s;
+  transition: 1s;
+  left: 0;
+}
+
+.slider__slide {
+  position: absolute;
+  height: 80vh;
+  width: 80vw;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.slider__slide--active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.slider__front {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+.slider__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: all 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  -webkit-animation-name: blurOut;
+          animation-name: blurOut;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes blurOut {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+
+@keyframes blurOut {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+
+.slider__image--zoom {
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  transition: transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985), -webkit-transform 1s cubic-bezier(0.165, 0.65, 0.1, 0.985);
+  -webkit-animation-name: blurIn;
+          animation-name: blurIn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes blurIn {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+/*# sourceMappingURL=slider.css.map */
