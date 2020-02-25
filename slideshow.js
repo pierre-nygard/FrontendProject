@@ -40,34 +40,34 @@ function loadSettings() {
 
         for (let i = 0; i < json.image_count; i++) {
 
-            let slider__slide = document.createElement("div");
-            let listItem = document.createElement("li");
-            let span = document.createElement("span");
-
             let image = json.images[i];
-            
-            // Create background classes with each corresponding gradient
-            $("<style type='text/css'> .body-"+i+"{ background: #" + image.color + "</style>").appendTo("head");
 
-            span.classList.add("circle");
-            listItem.addEventListener("click", () => goToImage(i));
+            let slider__slide = document.createElement("div");
+                $(slider__slide).addClass("slider__slide");
 
-            slider__slide.classList.add("slider__slide");
+            let listItem = document.createElement("li");
+                $(listItem).click(() => goToImage(i)); //Adding eventlisteners to all listItems
+
+            let span = document.createElement("span");
+                $(span).addClass("circle");
+                    
+                   
             slider__slide.dataset.slide = i;
             slider__slide.style.transform = "translate(" + i * 100 + "%, 0)";
 
             if (i == json.starting_image) {
-                slider__slide.classList.add("slider__slide--active");
-                span.classList.add("circle--active");
+                $(slider__slide).addClass("slider__slide--active");
+                $(span).addClass("circle--active");
+              
             }
 
+
+            ChangeColorBg(i, image.color);
             FillSlider_Slide(slider__slide, image.image_title, image.image_description, i, image.image_url);
             
            
-
-            buttons.append(listItem);
-            listItem.appendChild(span);
-
+            $(buttons).append(listItem);           
+            $(listItem).append(span);        
             $("#slider").append(slider__slide);
         }
         $("body").toggleClass('body-'+activeImageIndex);
@@ -75,11 +75,13 @@ function loadSettings() {
 }
 
 
+function ChangeColorBg(index, imageColor){
+    // Create background classes with each corresponding gradient
+    $("<style type='text/css'> .body-"+index+"{ background: #" + imageColor + "</style>").appendTo("head");
 
-
-function CreateElements(){
-    
+            
 }
+
 
 function FillSlider_Slide(slider__slide, image_title, image_description, i, image_url ){
     slider__slide.innerHTML = `
