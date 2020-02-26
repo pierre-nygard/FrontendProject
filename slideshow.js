@@ -35,7 +35,7 @@ function toggleZoom(x, y) {
 }
 
 function fillSlider(slider__slide, image_title, image_description, i, image_url ){
-    slider__slide.innerHTML = `
+    slider__slide.html (`
     <div class="slider__front">
         <div class="content">
             <div>
@@ -45,7 +45,7 @@ function fillSlider(slider__slide, image_title, image_description, i, image_url 
         </div>
     </div>
     <div class="slider__image" data-image="${i}" style="background-image: url(${image_url})"></div> 
-    `;
+    `);
 }
 
 function createBackgroundClass(index, imageColor){
@@ -55,16 +55,16 @@ function createBackgroundClass(index, imageColor){
 
 function createAppend(i, starting_image, image){
 
-    let slider__slide = document.createElement("div");
-    $(slider__slide).addClass("slider__slide");
-    $(slider__slide).css("transform", "translate(" + i * 100 + "%, 0)");
-    slider__slide.dataset.slide = i;
+    // let slider__slide = document.createElement("div");
+    let slider__slide = $('<div class="slider__slide"></div>');
+    slider__slide.css("transform", "translate(" + i * 100 + "%, 0)");
 
-    let listItem = document.createElement("li");
-    $(listItem).click(() => goToImage(i)); //Adding eventlisteners to all listItems
+    // let listItem = document.createElement("li");
+    let listItem = $("<li></li>")
+    listItem.click(() => goToImage(i)); //Adding eventlisteners to all listItems
 
-    let span = document.createElement("span");
-    $(span).addClass("circle");
+    let span = $("<span></span>");
+    span.addClass("circle");
                                   
     if (i == starting_image) {
         $(slider__slide).addClass("slider__slide--active");
